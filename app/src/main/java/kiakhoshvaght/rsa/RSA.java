@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Random;
 
 public class RSA {
-    private BigInteger p, q, N, e, phi, d;
+    BigInteger p, q, N, e, phi, d;
     private int primeLength = 1024;
     private Random r;
 
@@ -19,6 +19,10 @@ public class RSA {
             e.add(BigInteger.ONE);
         }
         d = e.modInverse(phi);
+    }
+
+    public void calculateManual(){
+        N = p.multiply(q);
     }
 
     public RSA(BigInteger e, BigInteger d, BigInteger N) {
