@@ -38,7 +38,7 @@
                 android:text="Decrypt"/>
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/result_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
