@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
@@ -60,11 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.encrypt_btn:
                 if(!eTv.getText().toString().equals("") && !dTv.getText().toString().equals("") && !pTv.getText().toString().equals("") && !qTv.getText().toString().equals("") && !nTv.getText().toString().equals("")){
                     Log.i(TAG,"FUNCTION : onClick => Encrypt => we have values");
-                    rsa.e = BigInteger.valueOf(Integer.parseInt(eTv.getText().toString()));
-                    rsa.d = BigInteger.valueOf(Integer.parseInt(dTv.getText().toString()));
-                    rsa.p = BigInteger.valueOf(Integer.parseInt(pTv.getText().toString()));
-                    rsa.q = BigInteger.valueOf(Integer.parseInt(qTv.getText().toString()));
-                    rsa.calculateManual();
+                    rsa.e = new BigInteger(eTv.getText().toString());
+                    rsa.d = new BigInteger(dTv.getText().toString());
+                    rsa.p = new BigInteger(pTv.getText().toString());
+                    rsa.q = new BigInteger(qTv.getText().toString());
                 }
                 String text = inputEt.getText().toString();
                 Log.i(TAG,"FUNCTION : onClick => Encrypt => text: " + text);
@@ -81,13 +81,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 nTv.setText(rsa.N + "");
                 break;
             case  R.id.decrypt_btn:
+                if(inputEt.getText().toString().equals("") || inputEt.getText().toString().equals(" ")){
+                    Toast.makeText(this, "Please enter something to encrypt", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(!eTv.getText().toString().equals("") && !dTv.getText().toString().equals("") && !pTv.getText().toString().equals("") && !qTv.getText().toString().equals("") && !nTv.getText().toString().equals("")){
                     Log.i(TAG,"FUNCTION : onClick => Encrypt => we have values");
-                    rsa.e = BigInteger.valueOf(Integer.parseInt(eTv.getText().toString()));
-                    rsa.d = BigInteger.valueOf(Integer.parseInt(dTv.getText().toString()));
-                    rsa.p = BigInteger.valueOf(Integer.parseInt(pTv.getText().toString()));
-                    rsa.q = BigInteger.valueOf(Integer.parseInt(qTv.getText().toString()));
-                    rsa.calculateManual();
+                    rsa.e = new BigInteger(eTv.getText().toString());
+                    rsa.d = new BigInteger(dTv.getText().toString());
+                    rsa.p = new BigInteger(pTv.getText().toString());
+                    rsa.q = new BigInteger(qTv.getText().toString());
                 }
                 Log.i(TAG,"FUNCTION : onClick => Decrypt");
                 Charset charset = StandardCharsets.US_ASCII;
